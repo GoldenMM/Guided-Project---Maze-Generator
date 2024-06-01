@@ -3,7 +3,9 @@ cell_size = 20
 
 class Window():
     ''' A simple window class that uses tkinter to create a window with a canvas.'''
-    def __init__(self, width, height) -> None:
+    def __init__(self, width: int, height: int) -> None:
+        self.width = width
+        self.height = height
         self.__root = Tk()
         self.__root.title = "Maze Generator"
         self.__canvas = Canvas(self.__root, width=width, height=height)
@@ -54,16 +56,23 @@ class Line():
         
 class Cell():
     '''A simple cell with a position and walls'''
+    
     def __init__(self, x, y, window) -> None:
+        # Check inputs are on canvas
+        if x < (cell_size/2) or x > (window.width - cell_size/2):
+            raise ValueError(f"x must be between {cell_size/2} and {window.width - cell_size/2}")
+        if y < (cell_size/2) or y > (window.height - cell_size/2):
+            raise ValueError(f"y must be between {cell_size/2} and {window.height - cell_size/2}")
+        
         self._x1 = x - cell_size // 2
         self._y1 = y - cell_size // 2
         self._x2 = x + cell_size // 2
         self._y2 = y + cell_size // 2
-        self._x = x
-        self._y = y
+        self.x = x
+        self.y = y
         self.walls = {'top': True, 'right': True, 'bottom': True, 'left': True}
         self._window = window
-    
+        
     def draw(self) -> None:
         '''Draw the cell on the canvas.'''
         if self.walls['top']:
@@ -80,4 +89,8 @@ class Cell():
             color = "grey"
         else:
             color = "red"
-        self._window.draw_line(Line(Point(self._x, self._y), Point(to_cell._x, to_cell._y)), color=color)
+        self._window.draw_line(Line(Point(self.x, self.y), Point(to_cell.x, to_cell.y)), color=color)
+        
+    def __repr__(self) -> str:
+        return f"Cell({self.x}, {self.y})"
+    
