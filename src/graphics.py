@@ -1,5 +1,4 @@
 from tkinter import Tk, BOTH, Canvas
-cell_size = 20
 
 class Window():
     ''' A simple window class that uses tkinter to create a window with a canvas.'''
@@ -57,7 +56,7 @@ class Line():
 class Cell():
     '''A simple cell with a position and walls'''
     
-    def __init__(self, x, y, window) -> None:
+    def __init__(self, x, y, window, cell_size) -> None:
         # Check inputs are on canvas
         if x < (cell_size/2) or x > (window.width - cell_size/2):
             raise ValueError(f"x must be between {cell_size/2} and {window.width - cell_size/2}")
@@ -68,6 +67,7 @@ class Cell():
         self._y1 = y - cell_size // 2
         self._x2 = x + cell_size // 2
         self._y2 = y + cell_size // 2
+        self._cell_size = cell_size
         self.x = x
         self.y = y
         self.walls = {'top': True, 'right': True, 'bottom': True, 'left': True}

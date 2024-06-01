@@ -1,14 +1,11 @@
 from src.graphics import *
-import random
+from src.maze import *
 
 window = Window(800, 600)
 
-c1 = Cell(20, 100, window)
-c2 = Cell(100, 100, window)
-
-c1.draw()
-c2.draw()
-
-c2.draw_move(c1)
+maze = Maze(x1=20, y1=20,
+            num_rows=15, num_cols=15,
+            cell_size=20,
+            win=window)
 
 window.wait_for_close() 
