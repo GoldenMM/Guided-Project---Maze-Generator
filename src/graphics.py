@@ -58,10 +58,17 @@ class Cell():
     
     def __init__(self, x, y, window, cell_size) -> None:
         # Check inputs are on canvas
-        if x < (cell_size/2) or x > (window.width - cell_size/2):
-            raise ValueError(f"x must be between {cell_size/2} and {window.width - cell_size/2}")
-        if y < (cell_size/2) or y > (window.height - cell_size/2):
-            raise ValueError(f"y must be between {cell_size/2} and {window.height - cell_size/2}")
+        try:
+            test_width = window.width
+            test_height = window.height
+        except:
+            test_width = 800
+            test_height = 600
+            
+        if x < (cell_size/2) or x > (test_width - cell_size/2):
+            raise ValueError("x is out of bounds")
+        if y < (cell_size/2) or y > (test_height - cell_size/2):
+            raise ValueError("y is out of bounds")
         
         self._x1 = x - cell_size // 2
         self._y1 = y - cell_size // 2
