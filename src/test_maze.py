@@ -35,5 +35,12 @@ class Tests(unittest.TestCase):
         self.assertIsNotNone(m4._cells[0][0])
         self.assertIsNotNone(m4._cells[num_cols-1][num_rows-1])
 
+    def test_break_entrance_and_exit(self):
+        num_cols = 5
+        num_rows = 5
+        m5 = Maze(20, 20, num_rows, num_cols, 10)
+        self.assertFalse(m5._cells[0][0].walls['top'])
+        self.assertFalse(m5._cells[num_cols-1][num_rows-1].walls['bottom'])
+        
 if __name__ == "__main__":
     unittest.main()

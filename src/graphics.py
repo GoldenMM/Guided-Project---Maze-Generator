@@ -1,5 +1,7 @@
 from tkinter import Tk, BOTH, Canvas
 
+BG_COLOR = "#D9D9D9"
+
 class Window():
     ''' A simple window class that uses tkinter to create a window with a canvas.'''
     def __init__(self, width: int, height: int) -> None:
@@ -79,17 +81,32 @@ class Cell():
         self.y = y
         self.walls = {'top': True, 'right': True, 'bottom': True, 'left': True}
         self._window = window
+    
+    def break_wall(self, wall: str) -> None:
+        '''Break a wall of the cell.'''
+        self.walls[wall] = False
         
     def draw(self) -> None:
         '''Draw the cell on the canvas.'''
         if self.walls['top']:
             self._window.draw_line(Line(Point(self._x1, self._y1), Point(self._x2, self._y1)))
+        else:
+            self._window.draw_line(Line(Point(self._x1, self._y1), Point(self._x2, self._y1)), BG_COLOR)
+
         if self.walls['right']:
             self._window.draw_line(Line(Point(self._x2, self._y1), Point(self._x2, self._y2)))
+        else:
+            self._window.draw_line(Line(Point(self._x2, self._y1), Point(self._x2, self._y2)), BG_COLOR)
+
         if self.walls['bottom']:
             self._window.draw_line(Line(Point(self._x2, self._y2), Point(self._x1, self._y2)))
+        else:
+            self._window.draw_line(Line(Point(self._x2, self._y2), Point(self._x1, self._y2)), BG_COLOR)
+
         if self.walls['left']:
             self._window.draw_line(Line(Point(self._x1, self._y2), Point(self._x1, self._y1)))
+        else:
+            self._window.draw_line(Line(Point(self._x1, self._y2), Point(self._x1, self._y1)), BG_COLOR)
 
     def draw_move(self, to_cell, undo=False) -> None:
         if undo:

@@ -26,6 +26,7 @@ class Maze():
         self._cells = []
         
         self._create_cells()
+        self._break_entrance_and_exit()
     
     def _create_cells(self) -> None:
         '''Populate the cells in the maze.'''
@@ -53,3 +54,10 @@ class Maze():
     def _animate(self) -> None:
         self._win.redraw()
         time.sleep(0.05)
+        
+    def _break_entrance_and_exit(self) -> None:
+        '''Break the entrance and exit walls'''
+        self._cells[0][0].break_wall('top')
+        self._draw_cell(0, 0)
+        self._cells[self._num_cols-1][self._num_rows-1].break_wall('bottom')
+        self._draw_cell(self._num_cols-1, self._num_rows-1)
