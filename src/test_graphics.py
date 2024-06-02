@@ -36,7 +36,7 @@ class TestLine(unittest.TestCase):
 class TestCell(unittest.TestCase):
     def setUp(self):
         self.window = Window(800, 600)
-        self.cell = Cell(10, 10, self.window, 20)
+        self.cell = Cell(10, 10, 20, self.window)
 
     def test_init(self):
         self.assertEqual(self.cell.x, 10)
@@ -45,13 +45,13 @@ class TestCell(unittest.TestCase):
 
     def test_init_value_error(self):
         with self.assertRaises(ValueError): # Test x lower than cell_size/2
-            Cell((self.cell._cell_size/2) -1 , 10, self.window, 20)
+            Cell((self.cell._cell_size/2) -1 , 10, 20, self.window)
         with self.assertRaises(ValueError): # Test x higher than window.width - cell_size/2
-            Cell(self.window.width - (self.cell._cell_size/2) + 1, 10, self.window, 20)
+            Cell(self.window.width - (self.cell._cell_size/2) + 1, 10, 20, self.window)
         with self.assertRaises(ValueError): # Test y lower than cell_size/2
-            Cell(10, (self.cell._cell_size/2) - 1, self.window, 20)
+            Cell(10, (self.cell._cell_size/2) - 1, 20, self.window)
         with self.assertRaises(ValueError): # Test y higher than window.height - cell_size/2
-            Cell(10, self.window.height - (self.cell._cell_size/2) + 1, self.window, 20)
+            Cell(10, self.window.height - (self.cell._cell_size/2) + 1, 20, self.window)
             
             
 if __name__ == '__main__':

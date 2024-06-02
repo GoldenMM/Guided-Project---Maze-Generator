@@ -35,8 +35,8 @@ class Maze():
                 cell = Cell(
                     self._x1 + x * self._cell_size,
                     self._y1 + y * self._cell_size,
-                    self._win,
-                    self._cell_size
+                    self._cell_size,
+                    self._win
                 )
                 col.append(cell)
             self._cells.append(col)

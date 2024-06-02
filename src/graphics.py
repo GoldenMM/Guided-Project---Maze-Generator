@@ -56,7 +56,7 @@ class Line():
 class Cell():
     '''A simple cell with a position and walls'''
     
-    def __init__(self, x, y, window, cell_size) -> None:
+    def __init__(self, x, y, cell_size, window=None) -> None:
         # Check inputs are on canvas
         try:
             test_width = window.width

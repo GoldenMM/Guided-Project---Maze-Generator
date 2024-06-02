@@ -27,3 +27,13 @@ class Tests(unittest.TestCase):
             len(m1._cells[0]),
             num_rows,
         )
+    
+    def test_maze_cell_access(self):
+        num_cols = 5
+        num_rows = 5
+        m4 = Maze(20, 20, num_rows, num_cols, 10)
+        self.assertIsNotNone(m4._cells[0][0])
+        self.assertIsNotNone(m4._cells[num_cols-1][num_rows-1])
+
+if __name__ == "__main__":
+    unittest.main()
